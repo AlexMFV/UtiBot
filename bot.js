@@ -1,54 +1,29 @@
-let Discord = require('discord.io');
-let auth = require('./auth.json');
-let logger = require('winston');
+const Discord = require('discord.js');
+const auth = require('./auth.json');
+const func = require('./methods.js')
+/* const logger = require('winston'); */
 
-//Logger settings
-logger.remove(logger.transports.Console);
-logger.add(new logger.transports.Console, {
-    colorize: true
+const bot = new Discord.Client();
+
+//When the bot logs in to the server
+bot.on('ready', () =>{
+  console.log("Logged in!");
 });
 
-let bot = new Discord.Client({
-  token: auth.token,
-  autorun: true
-});
+//When a user writes a message on the server
+bot.on('message', msg => {
+  if(msg.content[0] == '<' && msg.content[1] == '>'){
+    let command = msg.content.substring(2);
+    let args = command.split(' ');
 
-bot.on('ready', function (evt) {
-    logger.info('Connected');
-    logger.info('Logged in as: ');
-    logger.info(bot.username + ' - (' + bot.id + ')');
-});
-
-bot.on('message', function (user, userID, channelID, message, evt) {
-    // Our bot needs to know if it will execute a command
-    // It will listen for messages that will start with `!`
-    if (message.substring(0, 1) == '!') {
-        var args = message.substring(1).split(' ');
-        var cmd = args[0];
-
-        args = args.splice(1);
-        switch(cmd) {
-            // !ping
-            case 'ping':
-                bot.sendMessage({
-                    to: channelID,
-                    message: 'Pong!'
-                });
-            break;
-            // Just add any case commands if you want to..
-         }
-     }
-});
-
-/* bot.on('message', function(user, userID, channelID, message, evt){
-  console.log(auth.token);
-  let args = message.split('<>').split(' ')
-
-  switch(args[0]){
-    case ping: bot.sendMessage({
-      to: channelID,
-      message: "The bot is alive!"
-    }); break;
-    default: break;
+    switch(args[0]){
+      case 'ping': func.ping(msg, args); break;
+      case 'avatar': func.avatar(msg, args); break;
+      case 'epoch': func.epoch(msg); break;
+      default: func.invalid(msg); break;
+    }
   }
-}); */
+});
+
+//Login the bot to the server
+bot.login(auth.token);
