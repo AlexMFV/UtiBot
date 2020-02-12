@@ -1,0 +1,28 @@
+{
+  "name": "utibot",
+  "version": "1.0.0",
+  "description": "An all purpose bot for Discord",
+  "main": "bot.js",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "nodemon": "^2.0.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexMFV/UtiBot.git"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "AlexMFV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexMFV/UtiBot/issues"
+  },
+  "homepage": "https://github.com/AlexMFV/UtiBot#readme"
+}
