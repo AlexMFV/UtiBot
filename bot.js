@@ -16,7 +16,7 @@ bot.on('message', msg => {
     let command = msg.content.substring(2);
     let args = command.split(' ');
 
-    switch(args[0]){
+    switch(args[0].toLowerCase()){
       case 'ping': func.ping(msg, args); break;
       case 'avatar': func.avatar(msg, args); break;
       case 'epoch': func.epoch(msg); break;

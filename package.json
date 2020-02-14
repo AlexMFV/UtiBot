@@ -10,7 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node bot.js"
+    "start": "node bot.js",
+    "mon": "npx nodemon bot.js"
   },
   "repository": {
     "type": "git",
