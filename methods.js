@@ -8,13 +8,14 @@ function epoch(msg){
 }
 
 function avatar(msg, args){
+  console.log(args.length);
   //If the user did specify the user
-  if(args.count > 1){
-    msg.channel.send('Get ' + args[1])
+  if(args.length > 1){
+    const guildInfo = msg.guild.members;
+    console.log(guildInfo);
   }
-  else{
-
-  }
+  else
+    msg.channel.send(msg.author.avatarURL);
 }
 
 function invalid(msg){
