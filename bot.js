@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const hook = require('node-webhooks');
 const auth = require('./auth.json');
 const func = require('./methods.js')
 /* const logger = require('winston'); */
@@ -20,6 +21,7 @@ bot.on('message', msg => {
       case 'ping': func.ping(msg, args); break;
       case 'avatar': func.avatar(msg, args); break;
       case 'epoch': func.epoch(msg); break;
+      case 'tweets': func.tweetsWebhook(msg, args); break;
       default: func.invalid(msg); break;
     }
   }
