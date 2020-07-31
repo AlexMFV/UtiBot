@@ -27,8 +27,13 @@ function invalid(msg){
   msg.channel.send('Sorry, but that command doesn\'t exist!');
 }
 
+function randomFact(msg, fact){
+  msg.channel.send(fact);
+}
+
 exports.ping = ping;
 exports.avatar = avatar;
 exports.epoch = epoch;
 exports.tweetsWebhook = tweetsWebhook;
+exports.randomFact = randomFact;
 exports.invalid = invalid;
