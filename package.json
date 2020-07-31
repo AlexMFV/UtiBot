@@ -5,8 +5,9 @@
   "main": "bot.js",
   "dependencies": {
     "discord.js": "^11.5.1",
+    "node-fetch": "^2.6.0",
     "node-webhooks": "^1.4.2",
-    "nodemon": "^2.0.2",
+    "nodemon": "^2.0.4",
     "winston": "^3.2.1"
   },
   "devDependencies": {},

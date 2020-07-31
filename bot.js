@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const hook = require('node-webhooks');
 const auth = require('./auth.json');
-const func = require('./methods.js')
+const func = require('./methods.js');
+const fetch = require('node-fetch');
 /* const logger = require('winston'); */
 
 const bot = new Discord.Client();
@@ -21,6 +22,7 @@ bot.on('message', msg => {
       case 'ping': func.ping(msg, args); break;
       case 'epoch': func.epoch(msg); break;
       case 'tweets': func.tweetsWebhook(msg, args); break;
+      case 'fact': randomFactAsync(msg); break;
       default: func.invalid(msg); break;
     }
   }
@@ -28,3 +30,9 @@ bot.on('message', msg => {
 
 //Login the bot to the server
 bot.login(auth.token);
+
+async function randomFactAsync(msg){
+  let response = await fetch("https://uselessfacts.jsph.pl/random.json?language=en");
+  let data = await response.json();
+  func.randomFact(msg, data.text);
+}
